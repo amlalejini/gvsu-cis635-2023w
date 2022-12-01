@@ -1,0 +1,16 @@
+---
+title: "GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)"
+author: "Instructor: Dr. Alexander Lalejini"
+date: "`r Sys.Date()`"
+output: bookdown::gitbook
+documentclass: book
+bibliography: ["book.bib", "packages.bib"]
+biblio-style: apalike
+nocite: '@*'
+link-citations: yes
+github-repo: amlalejini/gvsu-cis635-2023w
+---
+
+# Introduction
+
+This website contains some of the course materials for Winter 2023 CIS 635 Section 02 at Grand Valley State University.
