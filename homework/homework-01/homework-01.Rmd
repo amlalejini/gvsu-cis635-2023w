@@ -26,7 +26,12 @@ output:
 
 ### Deliverables
 
-- .pdf file with your responses
+- **.pdf file** with your responses
+
+### Formatting
+
+In the document that you turn in for this homework, include a heading for each Part (Part A, Part B, Part C).
+Ensure that you **clearly** indicate which question each of your responses are associated with.
 
 ## Part A. Syllabus
 

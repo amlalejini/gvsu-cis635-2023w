@@ -5,5 +5,7 @@ language:
 delete_merged_file: true
 rmd_files: [
   "index.Rmd",
+  "lecture-material/week-01/week-01.md",
+  "homework/homework-01/homework-01.Rmd",
   "tail.Rmd"
 ]
