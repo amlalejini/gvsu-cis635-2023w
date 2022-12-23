@@ -4,6 +4,7 @@ overview
 objectives
 grading
 deliverables
+formatting
 part-a.-syllabus
 part-b.-attribute-descriptions
 part-c.-thinking-about-common-data-mining-applications
