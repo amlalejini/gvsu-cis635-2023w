@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Getting Started with R Markdown | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)</title>
+  <meta name="description" content="Chapter 3 Getting Started with R Markdown | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Getting Started with R Markdown | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta name="github-repo" content="amlalejini/gvsu-cis635-2023w" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Getting Started with R Markdown | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  
+  
+  
+
+<meta name="author" content="Instructor: Dr. Alexander Lalejini" />
+
+
+<meta name="date" content="2022-12-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="homework-1.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">CIS 635 (Winter 2023)</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="part"><span><b>Week 01</b></span></li>
+<li class="chapter" data-level="2" data-path="homework-1.html"><a href="homework-1.html"><i class="fa fa-check"></i><b>2</b> Homework 1</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="homework-1.html"><a href="homework-1.html#overview"><i class="fa fa-check"></i><b>2.1</b> Overview</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="homework-1.html"><a href="homework-1.html#objectives"><i class="fa fa-check"></i><b>2.1.1</b> Objectives</a></li>
+<li class="chapter" data-level="2.1.2" data-path="homework-1.html"><a href="homework-1.html#grading"><i class="fa fa-check"></i><b>2.1.2</b> Grading</a></li>
+<li class="chapter" data-level="2.1.3" data-path="homework-1.html"><a href="homework-1.html#deliverables"><i class="fa fa-check"></i><b>2.1.3</b> Deliverables</a></li>
+<li class="chapter" data-level="2.1.4" data-path="homework-1.html"><a href="homework-1.html#formatting"><i class="fa fa-check"></i><b>2.1.4</b> Formatting</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="homework-1.html"><a href="homework-1.html#part-a.-syllabus"><i class="fa fa-check"></i><b>2.2</b> Part A. Syllabus</a></li>
+<li class="chapter" data-level="2.3" data-path="homework-1.html"><a href="homework-1.html#part-b.-attribute-descriptions"><i class="fa fa-check"></i><b>2.3</b> Part B. Attribute descriptions</a></li>
+<li class="chapter" data-level="2.4" data-path="homework-1.html"><a href="homework-1.html#part-c.-thinking-about-common-data-mining-applications"><i class="fa fa-check"></i><b>2.4</b> Part C. Thinking about common data mining applications</a></li>
+</ul></li>
+<li class="part"><span><b>Week 02</b></span></li>
+<li class="chapter" data-level="3" data-path="getting-started-with-r-markdown.html"><a href="getting-started-with-r-markdown.html"><i class="fa fa-check"></i><b>3</b> Getting Started with R Markdown</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="getting-started-with-r-markdown.html"><a href="getting-started-with-r-markdown.html#dependencies"><i class="fa fa-check"></i><b>3.1</b> Dependencies</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="getting-started-with-r-markdown.html"><a href="getting-started-with-r-markdown.html#installing-r-packages"><i class="fa fa-check"></i><b>3.1.1</b> Installing R packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="getting-started-with-r-markdown.html"><a href="getting-started-with-r-markdown.html#create-a-new-r-markdown-document-in-rstudio"><i class="fa fa-check"></i><b>3.2</b> Create a new R Markdown document in RStudio</a></li>
+<li class="chapter" data-level="3.3" data-path="getting-started-with-r-markdown.html"><a href="getting-started-with-r-markdown.html#anatomy-of-an-r-markdown-document"><i class="fa fa-check"></i><b>3.3</b> Anatomy of an R Markdown document</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="getting-started-with-r-markdown.html"><a href="getting-started-with-r-markdown.html#frontmatter-metadata"><i class="fa fa-check"></i><b>3.3.1</b> Frontmatter (metadata)</a></li>
+<li class="chapter" data-level="3.3.2" data-path="getting-started-with-r-markdown.html"><a href="getting-started-with-r-markdown.html#text"><i class="fa fa-check"></i><b>3.3.2</b> Text</a></li>
+<li class="chapter" data-level="3.3.3" data-path="getting-started-with-r-markdown.html"><a href="getting-started-with-r-markdown.html#code"><i class="fa fa-check"></i><b>3.3.3</b> Code</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="getting-started-with-r-markdown.html"><a href="getting-started-with-r-markdown.html#knitting"><i class="fa fa-check"></i><b>3.4</b> “Knitting”</a></li>
+<li class="chapter" data-level="3.5" data-path="getting-started-with-r-markdown.html"><a href="getting-started-with-r-markdown.html#resources"><i class="fa fa-check"></i><b>3.5</b> Resources</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with ❤ and bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="getting-started-with-r-markdown" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Getting Started with R Markdown<a href="getting-started-with-r-markdown.html#getting-started-with-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>R markdown documents are a way to interweave <a href="https://www.markdownguide.org/">markdown</a> with R. This enables us to write nicely formatted documents with R code (and output from your R code) embedded directly in the document.
+Find examples of compiled R markdown documents here: <a href="https://rmarkdown.rstudio.com/gallery.html" class="uri">https://rmarkdown.rstudio.com/gallery.html</a>
+In fact, this page is generated with R Markdown! Source code for this page <a href="https://github.com/amlalejini/gvsu-cis635-2022f/tree/main/lecture-material/rmd-getting-started">here</a>.</p>
+<div id="dependencies" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Dependencies<a href="getting-started-with-r-markdown.html#dependencies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To use R markdown, you’ll need to install the following packages: <code>markdown</code> and <code>rmarkdown</code>. You should also want to go ahead and install the <code>tinytex</code> package (+ install TinyTex) to be able generate PDF output from your R Markdown documents. See the instructions below!</p>
+<div id="installing-r-packages" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Installing R packages<a href="getting-started-with-r-markdown.html#installing-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As previously mentioned, there are <em>many</em> R packages (&gt; 18,000!) with all sorts of useful functionality.
+To install an R package, use the <code>install.packages</code> function in your R console (e.g., in RStudio).
+Run <code>?install.packages</code> in your R console to read its help page.</p>
+<p>To install the <code>markdown</code> and <code>rmarkdown</code> packages, run the following command in your R console:</p>
+<pre><code>install.packages(c(&quot;markdown&quot;, &quot;rmarkdown&quot;))</code></pre>
+<p>Once the installations finish, you should be able to run the following two commands without errors:</p>
+<pre><code>library(markdown)
+library(rmarkdown)</code></pre>
+<p>For this class, you’ll also need to be able to generate PDF output from your R Markdown documents. To do so, you’ll need to instal LaTex (if you’re not sure what that is, no worries!). Run the following two commands in your R console in RStudio:</p>
+<pre><code>install.packages(&#39;tinytex&#39;)
+tinytex::install_tinytex()</code></pre>
+</div>
+</div>
+<div id="create-a-new-r-markdown-document-in-rstudio" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Create a new R Markdown document in RStudio<a href="getting-started-with-r-markdown.html#create-a-new-r-markdown-document-in-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Click the new file button in the top right of the RStudio window, and select R Markdown.</p>
+<p>In RStudio, you should get a pop-up for creating a new r markdown document. For now, there are two relevant options:</p>
+<ol style="list-style-type: decimal">
+<li>Click the “Create Empty Document” in the bottom left of the popup. This will create an empty R markdown file for you.</li>
+<li>Fill out the title, author (you!), and date fields and press “Okay”. This will create a new R markdown file, but RStudio will initialize your file with a bunch of stuff (this stuff is helpful information, but you will want to delete it all for any assignments in this class).</li>
+</ol>
+</div>
+<div id="anatomy-of-an-r-markdown-document" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Anatomy of an R Markdown document<a href="getting-started-with-r-markdown.html#anatomy-of-an-r-markdown-document" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are three basic components in an R Markdown document: the metadata, text, and code.</p>
+<p>Here’s the contents for a minimal R Markdown document (from <a href="https://bookdown.org/yihui/rmarkdown/basics.html" class="uri">https://bookdown.org/yihui/rmarkdown/basics.html</a>):</p>
+<p><img src="https://raw.githubusercontent.com/amlalejini/gvsu-cis635-2022f/main/lecture-material/rmd-getting-started/media/minimal-rmd-example.png" /></p>
+<p>An R Markdown document should be a plain text file (i.e., don’t try to write one in google docs or microsoft word!) and conventionally has the <code>.Rmd</code> file extension.</p>
+<div id="frontmatter-metadata" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Frontmatter (metadata)<a href="getting-started-with-r-markdown.html#frontmatter-metadata" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The metadata (or the frontmatter) specifies how your R Markdown should be compiled. E.g., the output file type, whether to include a table of contents, etc.</p>
+<p>The metadata should be written between a pair of three dashes <code>---</code> at the top of your document (see minimal example).</p>
+<p>For now, don’t worry too much about what you should include in your document metadata. For the most part, you can just use what RStudio includes in your document.</p>
+</div>
+<div id="text" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Text<a href="getting-started-with-r-markdown.html#text" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The body of your document follows the metadata. Any text (i.e., everything that isn’t code) you include in your document should follow markdown syntax.</p>
+<p>If you’re not already familiar with markdown, read over this: <a href="https://www.markdownguide.org/getting-started" class="uri">https://www.markdownguide.org/getting-started</a>.</p>
+<ul>
+<li>For basic markdown syntax, see: <a href="https://www.markdownguide.org/basic-syntax/" class="uri">https://www.markdownguide.org/basic-syntax/</a>. Being familiar with basic syntax should be just about everything you need for your homework assignments in this class.</li>
+<li>For more advanced markdown syntax, see: <a href="https://www.markdownguide.org/extended-syntax/" class="uri">https://www.markdownguide.org/extended-syntax/</a>.</li>
+<li>You can also refer to <a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#markdown-syntax">Section 2.5 in R Markdown: The Definitive Guide</a> for more info on markdown.</li>
+</ul>
+</div>
+<div id="code" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Code<a href="getting-started-with-r-markdown.html#code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In general, you can include code in your R Markdown documents in two ways:</p>
+<ul>
+<li>Inline code begin with <code>`r</code> and end with a <code>`</code>. E.g., <code>2</code> would render the result of <code>log(4, base=2)</code> inline.</li>
+<li>You can include a “code chunk” inside your R Markdown document. A code chunk begins with three backticks <code>```{r}</code> and end with three backticks (see minimal example above for an example). There are many options tha tyou can specify in the <code>{}</code> at the beginning of a code chunk. See <a href="https://yihui.org/knitr/options/" class="uri">https://yihui.org/knitr/options/</a> for details.</li>
+</ul>
+</div>
+</div>
+<div id="knitting" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> “Knitting”<a href="getting-started-with-r-markdown.html#knitting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To compile an R Markdown document into a PDF or HTML file, you need to “Knit” it. In RStudio, this is pretty straightforward. Just click the “Knit” button on your document in RStudio.</p>
+</div>
+<div id="resources" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Resources<a href="getting-started-with-r-markdown.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></li>
+<li>Code chunk options: <a href="https://yihui.org/knitr/options/" class="uri">https://yihui.org/knitr/options/</a></li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="homework-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/amlalejini/gvsu-cis635-2023w/tree/main/lecture-material/week-02/rmarkdown-getting-started.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

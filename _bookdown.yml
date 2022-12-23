@@ -7,5 +7,7 @@ rmd_files: [
   "index.Rmd",
   "lecture-material/week-01/week-01.md",
   "homework/homework-01/homework-01.Rmd",
+  "lecture-material/week-02/week-02.md",
+  "lecture-material/week-02/rmarkdown-getting-started.Rmd",
   "tail.Rmd"
 ]

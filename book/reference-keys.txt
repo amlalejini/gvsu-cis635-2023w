@@ -8,3 +8,13 @@ formatting
 part-a.-syllabus
 part-b.-attribute-descriptions
 part-c.-thinking-about-common-data-mining-applications
+getting-started-with-r-markdown
+dependencies
+installing-r-packages
+create-a-new-r-markdown-document-in-rstudio
+anatomy-of-an-r-markdown-document
+frontmatter-metadata
+text
+code
+knitting
+resources
