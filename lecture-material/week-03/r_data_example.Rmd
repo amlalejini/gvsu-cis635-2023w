@@ -1,0 +1,129 @@
+---
+title: "R Data Example"
+author: "Alexander Lalejini"
+date: "2022-09-01"
+output: html_document
+---
+
+# Setup
+
+```{r}
+library(tidyverse)
+library(viridis)  # Contains some nice color palettes
+library(hexbin)   # Used to make the hexbin plot
+```
+
+# Load our data
+
+```{r}
+# Note that I'm using the read_csv function from the tidyverse readr package
+# instead of the base r read.csv function. You can use either.
+netflix_data <- read_csv("netflix_titles.csv")
+```
+
+Columns in our dataset:
+
+```{r}
+colnames(netflix_data)
+```
+
+First, let's make the `type`, `rating`, and `country` columns into factors.
+
+```{r}
+# Make type column a factor
+netflix_data$type <- as.factor(netflix_data$type)
+
+# Make ratings into a factor, throw out movies/shows with nonsense for a rating
+netflix_data <- netflix_data %>% filter( !(rating %in% c("66 min", "74 min", "84 min")) )
+netflix_data$rating <- as.factor(netflix_data$rating)
+
+# Country into a factor
+netflix_data$country <- as.factor(netflix_data$country)
+```
+
+Next, we split the data into two data sets, one for movies and one for tv shows.
+
+```{r}
+movie_data <- netflix_data %>% filter( type == "Movie" )
+tv_show_data <- netflix_data %>% filter( type == "TV Show" )
+```
+
+Pull out the movie length (in minutes) from the duration column.
+
+```{r}
+movie_data <- movie_data %>%
+  separate(
+    col=duration,
+    into=c("length_min", NA),
+    sep=" ",
+    remove=FALSE
+  )
+# make the new length_min column a numeric column
+movie_data$length_min <- as.numeric(movie_data$length_min)
+```
+
+Pull out the tv show number of seasons from the duration column
+
+```{r}
+tv_show_data <- tv_show_data %>%
+  separate(
+    col=duration,
+    into=c("num_seasons", NA),
+    sep=" ",
+    remove=FALSE
+  )
+tv_show_data$num_seasons <- as.numeric(tv_show_data$num_seasons)
+```
+
+We can use `group_by` and `summarise` to make a summary table that gives the number of movies on netflix per year.
+Each observation will be a year with the number of available movies that year.
+
+```{r}
+# Use group_by to group movies by release_year, and then summarize will run some summary functions on them.
+# These summary functions (e.g., n() and mean()) need to be compatible with summarise.
+movie_release_year_table <- movie_data %>%
+  group_by(release_year) %>%
+  summarise(
+    num_movies=n(),
+    avg_length_min=mean(length_min, na.rm=TRUE)
+  )
+movie_release_year_table
+```
+
+Show the years with the greatest representation on netflix
+
+```{r}
+movie_release_year_table %>% arrange(desc(num_movies))
+```
+
+# Creating graphics with R
+
+Histogram of number of movies on netflix by year
+
+```{r}
+# Graph adatped from R Graph Gallery
+# https://r-graph-gallery.com/220-basic-ggplot2-histogram.html
+
+my_plot <- ggplot(movie_data, aes(x=release_year)) +
+  geom_histogram(binwidth=1) +
+  labs(x="Release year", y="Number of movies")
+my_plot
+
+ggsave(plot=my_plot, filename="my_plot.pdf")
+```
+
+2-D density plot showing the relationship between release year and length of movie in minutes.
+
+```{r}
+# Graph adapted from the R Graph Gallery
+# https://r-graph-gallery.com/2d-density-plot-with-ggplot2.html#hex
+
+# Bin size control + color palette
+ggplot(movie_data, aes(x=release_year, y=length_min) ) +
+  geom_hex(bins = 70) +
+  scale_fill_continuous(name="Number of movies", type = "viridis") +
+  labs(y="Movie length (minutes)", x="Release year")
+  theme_bw()
+```
+
+
