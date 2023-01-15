@@ -49,7 +49,7 @@ There are three basic components in an R Markdown document: the metadata, text, 
 
 Here's the contents for a minimal R Markdown document (from <https://bookdown.org/yihui/rmarkdown/basics.html>):
 
-![](https://raw.githubusercontent.com/amlalejini/gvsu-cis635-2023w/main/lecture-material/rmd-getting-started/media/minimal-rmd-example.png)
+![](https://raw.githubusercontent.com/amlalejini/gvsu-cis635-2023w/main/lecture-material/week-02/media/minimal-rmd-example.png)
 
 An R Markdown document should be a plain text file (i.e., don't try to write one in google docs or microsoft word!) and conventionally has the `.Rmd` file extension.
 
