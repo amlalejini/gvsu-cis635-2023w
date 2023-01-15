@@ -18,3 +18,13 @@ text
 code
 knitting
 resources
+homework-2
+overview-1
+grading-1
+deliverables-1
+setup
+part-a.-use-r-as-a-calculator
+part-b.-built-in-functions
+part-c.-creating-vectors
+part-d.-subsetting-vectors
+part-e.-types-of-data
