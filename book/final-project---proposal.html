@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Getting Started with R Markdown | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)</title>
-  <meta name="description" content="Chapter 3 Getting Started with R Markdown | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <title>Chapter 6 Final project - Proposal | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)</title>
+  <meta name="description" content="Chapter 6 Final project - Proposal | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Getting Started with R Markdown | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <meta property="og:title" content="Chapter 6 Final project - Proposal | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="amlalejini/gvsu-cis635-2023w" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Getting Started with R Markdown | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <meta name="twitter:title" content="Chapter 6 Final project - Proposal | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="homework-1.html"/>
-<link rel="next" href="homework-2.html"/>
+<link rel="prev" href="final-project-overview.html"/>
+<link rel="next" href="final-project---mid-project-update.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -266,79 +266,174 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="getting-started-with-r-markdown" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Getting Started with R Markdown<a href="getting-started-with-r-markdown.html#getting-started-with-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>R markdown documents are a way to interweave <a href="https://www.markdownguide.org/">markdown</a> with R. This enables us to write nicely formatted documents with R code (and output from your R code) embedded directly in the document.
-Find examples of compiled R markdown documents here: <a href="https://rmarkdown.rstudio.com/gallery.html" class="uri">https://rmarkdown.rstudio.com/gallery.html</a>
-In fact, this page is generated with R Markdown! Source code for this page <a href="https://github.com/amlalejini/gvsu-cis635-2023w/tree/main/lecture-material/rmd-getting-started">here</a>.</p>
-<div id="dependencies" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Dependencies<a href="getting-started-with-r-markdown.html#dependencies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To use R markdown, you’ll need to install the following packages: <code>markdown</code> and <code>rmarkdown</code>. You should also want to go ahead and install the <code>tinytex</code> package (+ install TinyTex) to be able generate PDF output from your R Markdown documents. See the instructions below!</p>
-<div id="installing-r-packages" class="section level3 hasAnchor" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Installing R packages<a href="getting-started-with-r-markdown.html#installing-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>As previously mentioned, there are <em>many</em> R packages (&gt; 18,000!) with all sorts of useful functionality.
-To install an R package, use the <code>install.packages</code> function in your R console (e.g., in RStudio).
-Run <code>?install.packages</code> in your R console to read its help page.</p>
-<p>To install the <code>markdown</code> and <code>rmarkdown</code> packages, run the following command in your R console:</p>
-<pre><code>install.packages(c(&quot;markdown&quot;, &quot;rmarkdown&quot;))</code></pre>
-<p>Once the installations finish, you should be able to run the following two commands without errors:</p>
-<pre><code>library(markdown)
-library(rmarkdown)</code></pre>
-<p>For this class, you’ll also need to be able to generate PDF output from your R Markdown documents. To do so, you’ll need to instal LaTex (if you’re not sure what that is, no worries!). Run the following two commands in your R console in RStudio:</p>
-<pre><code>install.packages(&#39;tinytex&#39;)
-tinytex::install_tinytex()</code></pre>
-</div>
-</div>
-<div id="create-a-new-r-markdown-document-in-rstudio" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Create a new R Markdown document in RStudio<a href="getting-started-with-r-markdown.html#create-a-new-r-markdown-document-in-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Click the new file button in the top right of the RStudio window, and select R Markdown.</p>
-<p>In RStudio, you should get a pop-up for creating a new r markdown document. For now, there are two relevant options:</p>
+<div id="final-project---proposal" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Final project - Proposal<a href="final-project---proposal.html#final-project---proposal" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Your project proposal serves two purposes:</p>
 <ol style="list-style-type: decimal">
-<li>Click the “Create Empty Document” in the bottom left of the popup. This will create an empty R markdown file for you.</li>
-<li>Fill out the title, author (you!), and date fields and press “Okay”. This will create a new R markdown file, but RStudio will initialize your file with a bunch of stuff (this stuff is helpful information, but you will want to delete it all for any assignments in this class).</li>
+<li>for you to end up with a solid plan for your project, and</li>
+<li>for me to evaluate whether your project fits my expectations and help you to improve it where it doesn’t</li>
 </ol>
-</div>
-<div id="anatomy-of-an-r-markdown-document" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Anatomy of an R Markdown document<a href="getting-started-with-r-markdown.html#anatomy-of-an-r-markdown-document" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There are three basic components in an R Markdown document: the metadata, text, and code.</p>
-<p>Here’s the contents for a minimal R Markdown document (from <a href="https://bookdown.org/yihui/rmarkdown/basics.html" class="uri">https://bookdown.org/yihui/rmarkdown/basics.html</a>):</p>
-<p><img src="https://raw.githubusercontent.com/amlalejini/gvsu-cis635-2023w/main/lecture-material/week-02/media/minimal-rmd-example.png" /></p>
-<p>An R Markdown document should be a plain text file (i.e., don’t try to write one in google docs or microsoft word!) and conventionally has the <code>.Rmd</code> file extension.</p>
-<div id="frontmatter-metadata" class="section level3 hasAnchor" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Frontmatter (metadata)<a href="getting-started-with-r-markdown.html#frontmatter-metadata" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The metadata (or the frontmatter) specifies how your R Markdown should be compiled. E.g., the output file type, whether to include a table of contents, etc.</p>
-<p>The metadata should be written between a pair of three dashes <code>---</code> at the top of your document (see minimal example).</p>
-<p>For now, don’t worry too much about what you should include in your document metadata. For the most part, you can just use what RStudio includes in your document.</p>
-</div>
-<div id="text" class="section level3 hasAnchor" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Text<a href="getting-started-with-r-markdown.html#text" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The body of your document follows the metadata. Any text (i.e., everything that isn’t code) you include in your document should follow markdown syntax.</p>
-<p>If you’re not already familiar with markdown, read over this: <a href="https://www.markdownguide.org/getting-started" class="uri">https://www.markdownguide.org/getting-started</a>.</p>
+<div id="project-expectations" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Project expectations<a href="final-project---proposal.html#project-expectations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In your project, you will choose a data mining application domain and develop a data mining pipeline for a specific problem.
+The particular application area, techniques you choose to use, and the outputs of your project are open-ended and up to you to propose.
+Be creative!</p>
+<p>However, I do have the following expectations for all projects:</p>
 <ul>
-<li>For basic markdown syntax, see: <a href="https://www.markdownguide.org/basic-syntax/" class="uri">https://www.markdownguide.org/basic-syntax/</a>. Being familiar with basic syntax should be just about everything you need for your homework assignments in this class.</li>
-<li>For more advanced markdown syntax, see: <a href="https://www.markdownguide.org/extended-syntax/" class="uri">https://www.markdownguide.org/extended-syntax/</a>.</li>
-<li>You can also refer to <a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#markdown-syntax">Section 2.5 in R Markdown: The Definitive Guide</a> for more info on markdown.</li>
-</ul>
-</div>
-<div id="code" class="section level3 hasAnchor" number="3.3.3">
-<h3><span class="header-section-number">3.3.3</span> Code<a href="getting-started-with-r-markdown.html#code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In general, you can include code in your R Markdown documents in two ways:</p>
+<li>I expect you to design and implement a complete data mining pipeline from start to finish.</li>
+<li>I expect your project to be well-researched, appropriate, and achievable in the given time frame.
 <ul>
-<li>Inline code begin with <code>`r</code> and end with a <code>`</code>. E.g., <code>2</code> would render the result of <code>log(4, base=2)</code> inline.</li>
-<li>You can include a “code chunk” inside your R Markdown document. A code chunk begins with three backticks <code>```{r}</code> and end with three backticks (see minimal example above for an example). There are many options tha tyou can specify in the <code>{}</code> at the beginning of a code chunk. See <a href="https://yihui.org/knitr/options/" class="uri">https://yihui.org/knitr/options/</a> for details.</li>
-</ul>
-</div>
-</div>
-<div id="knitting" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> “Knitting”<a href="getting-started-with-r-markdown.html#knitting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To compile an R Markdown document into a PDF or HTML file, you need to “Knit” it. In RStudio, this is pretty straightforward. Just click the “Knit” button on your document in RStudio.</p>
-</div>
-<div id="resources" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Resources<a href="getting-started-with-r-markdown.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<li>If you’re unsure, come chat with me during office hours!</li>
+</ul></li>
+<li>I expect you to either collect your own dataset or use a publicly available dataset.</li>
+<li>I expect you to evaluate your data mining approach in some way.
 <ul>
-<li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></li>
-<li>Code chunk options: <a href="https://yihui.org/knitr/options/" class="uri">https://yihui.org/knitr/options/</a></li>
+<li>Conducting a small study that compares your approach to an alternative approach,</li>
+<li>Assessing the accuracy of your model by holding back validation data,</li>
+<li>Assessing the robustness of your model,</li>
+<li>Etc.</li>
+</ul></li>
+<li>I expect you to effectively communicate your methodology and findings in a final report.
+<ul>
+<li>This will take the form of a well-organized and well-written explanations with publication-quality visualzations.</li>
+</ul></li>
 </ul>
+<p>I will consider the <em>overall</em> difficulty of your project when determining whether or not it is sufficient (or infeasible) for your final project.
+For example, if your are collecting your own data, your pipeline will need to be simpler because of the extra time and effort requried for data collection.</p>
+</div>
+<div id="proposal-guidelines" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Proposal guidelines<a href="final-project---proposal.html#proposal-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Your project proposal should be under 3 pages, be formatted under the following headings, and address each of the following points:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Project overview</strong></li>
+</ol>
+<ul>
+<li>Provide an overview of your project.</li>
+<li>What is the application domain you are working on?</li>
+<li>What specific problem are you working on?</li>
+<li>Briefly, what is your overall approach?</li>
+<li>Why? What is your motivation?</li>
+<li>What are your goals for this project?</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Related work</strong></li>
+</ol>
+<ul>
+<li>What similar projects have been attempted in your proposed domain? How do they related to your project?</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>Data plan</strong></li>
+</ol>
+<ul>
+<li>What data do you plan to use for your project?</li>
+<li>If you plan on collecting your own data, how do you plan to do so?</li>
+<li>If you plan to use an existing dataset, which dataset do you plan to use and why? Who collected your data and for what original purpose?</li>
+<li>What proprocessing do you expect to need to perform on your data?</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li><strong>Implementation plan</strong></li>
+</ol>
+<ul>
+<li>Describe your proposed data mining pipeline</li>
+<li>How will you implement your data mining pipeline?</li>
+<li>What components do you plan to use existing software/libraries for? Which software/libraries do you plan to use?</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li><strong>Evaluation plan</strong></li>
+</ol>
+<ul>
+<li>How do you plan to evaluate your data mining algorithm?</li>
+<li>Provide a broad overview of how you plan to evaluate your approach. How will you measure success? Will you compare to an alternative method? Measure accuracy with a ground truth testing set?</li>
+</ul>
+<ol start="6" style="list-style-type: decimal">
+<li><strong>Plan for group collaboration</strong></li>
+</ol>
+<ul>
+<li>What is your plan for collaborating as a group? Do you plan to meet regularly in-person, over zoom, or coordinate asynchronously on a messaging application like discord?</li>
+<li>How do you plan to collaboratively implement your data mining pipeline? How will you manage your code and your data?</li>
+</ul>
+<ol start="7" style="list-style-type: decimal">
+<li><strong>Timeline</strong></li>
+</ol>
+<ul>
+<li>Outline your week-by-week goals for completing your project by the final report deadline</li>
+<li>Feel free to communicate this timeline as a bulleted list, a table, etc.</li>
+</ul>
+<ol start="8" style="list-style-type: decimal">
+<li><strong>References</strong></li>
+</ol>
+<ul>
+<li>List your references.</li>
+</ul>
+<p>Include a project title and the members of your group as part of your proposal.
+Your proposal should be organized into clearly labeled sections (one to address each of the eight categories above).
+Each section should be written in paragraph form (with the exception of the references and the timeline section where you may opt to use a list or a table).
+Your proposal will be graded on the quality of your writing as well as your answers to the previously listed prompts.</p>
+<p>It should be evident that your group has thoroughly researched the area and formulated a plan to achieve your goals.
+I recognize that things may change during the course of the project, but I’m looking here to make sure you have a solid initial plan.
+Any significant project like this requires significant prework before implementation.</p>
+</div>
+<div id="grading-3" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Grading<a href="final-project---proposal.html#grading-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The proposal will be graded as follows (out of 100):</p>
+<table>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Project overview section addresses required points</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Related work section addresses required points</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>Data plan section addresses required points</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Implementation plan section addresses required points</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>Evaluation plan section addresses required points</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Plan for group collaboration section addresses required points</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Timeline section addresses required points</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Related work and references are included and cited appropriately</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>Writing is appropriately formal</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Writing is clear</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>Proposal is well-formatted</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>I reserve the right to award flex points for exemplary work in any areas of this project.</p>
+<p>All components of your final project are subject to GVSU and the School of Computing’s academic honesty policies.
+Violations of these policies may result in failure from the course.
+You will recieve no credit for a proposal that violates the academic honesty policy in any way.</p>
 
 </div>
 </div>
@@ -347,8 +442,8 @@ tinytex::install_tinytex()</code></pre>
           </div>
         </div>
       </div>
-<a href="homework-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="homework-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="final-project-overview.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="final-project---mid-project-update.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -379,7 +474,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/amlalejini/gvsu-cis635-2023w/tree/main/lecture-material/week-02/rmarkdown-getting-started.Rmd",
+"link": "https://github.com/amlalejini/gvsu-cis635-2023w/tree/main/project/proposal.md",
 "text": "Edit"
 },
 "history": {

@@ -10,5 +10,10 @@ rmd_files: [
   "lecture-material/week-02/week-02.md",
   "lecture-material/week-02/rmarkdown-getting-started.Rmd",
   "homework/homework-02/homework-02.Rmd",
+  "project/project.md",
+  "project/proposal.md",
+  "project/progress-report.md",
+  "project/draft.md",
+  "project/final-report.md",
   "tail.Rmd"
 ]

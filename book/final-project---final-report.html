@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Getting Started with R Markdown | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)</title>
-  <meta name="description" content="Chapter 3 Getting Started with R Markdown | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <title>Chapter 9 Final project - Final report | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)</title>
+  <meta name="description" content="Chapter 9 Final project - Final report | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Getting Started with R Markdown | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <meta property="og:title" content="Chapter 9 Final project - Final report | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="amlalejini/gvsu-cis635-2023w" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Getting Started with R Markdown | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <meta name="twitter:title" content="Chapter 9 Final project - Final report | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="homework-1.html"/>
-<link rel="next" href="homework-2.html"/>
+<link rel="prev" href="final-project---report-draft.html"/>
+<link rel="next" href="references-1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -266,79 +266,201 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="getting-started-with-r-markdown" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Getting Started with R Markdown<a href="getting-started-with-r-markdown.html#getting-started-with-r-markdown" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>R markdown documents are a way to interweave <a href="https://www.markdownguide.org/">markdown</a> with R. This enables us to write nicely formatted documents with R code (and output from your R code) embedded directly in the document.
-Find examples of compiled R markdown documents here: <a href="https://rmarkdown.rstudio.com/gallery.html" class="uri">https://rmarkdown.rstudio.com/gallery.html</a>
-In fact, this page is generated with R Markdown! Source code for this page <a href="https://github.com/amlalejini/gvsu-cis635-2023w/tree/main/lecture-material/rmd-getting-started">here</a>.</p>
-<div id="dependencies" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Dependencies<a href="getting-started-with-r-markdown.html#dependencies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To use R markdown, you’ll need to install the following packages: <code>markdown</code> and <code>rmarkdown</code>. You should also want to go ahead and install the <code>tinytex</code> package (+ install TinyTex) to be able generate PDF output from your R Markdown documents. See the instructions below!</p>
-<div id="installing-r-packages" class="section level3 hasAnchor" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Installing R packages<a href="getting-started-with-r-markdown.html#installing-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>As previously mentioned, there are <em>many</em> R packages (&gt; 18,000!) with all sorts of useful functionality.
-To install an R package, use the <code>install.packages</code> function in your R console (e.g., in RStudio).
-Run <code>?install.packages</code> in your R console to read its help page.</p>
-<p>To install the <code>markdown</code> and <code>rmarkdown</code> packages, run the following command in your R console:</p>
-<pre><code>install.packages(c(&quot;markdown&quot;, &quot;rmarkdown&quot;))</code></pre>
-<p>Once the installations finish, you should be able to run the following two commands without errors:</p>
-<pre><code>library(markdown)
-library(rmarkdown)</code></pre>
-<p>For this class, you’ll also need to be able to generate PDF output from your R Markdown documents. To do so, you’ll need to instal LaTex (if you’re not sure what that is, no worries!). Run the following two commands in your R console in RStudio:</p>
-<pre><code>install.packages(&#39;tinytex&#39;)
-tinytex::install_tinytex()</code></pre>
-</div>
-</div>
-<div id="create-a-new-r-markdown-document-in-rstudio" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Create a new R Markdown document in RStudio<a href="getting-started-with-r-markdown.html#create-a-new-r-markdown-document-in-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Click the new file button in the top right of the RStudio window, and select R Markdown.</p>
-<p>In RStudio, you should get a pop-up for creating a new r markdown document. For now, there are two relevant options:</p>
-<ol style="list-style-type: decimal">
-<li>Click the “Create Empty Document” in the bottom left of the popup. This will create an empty R markdown file for you.</li>
-<li>Fill out the title, author (you!), and date fields and press “Okay”. This will create a new R markdown file, but RStudio will initialize your file with a bunch of stuff (this stuff is helpful information, but you will want to delete it all for any assignments in this class).</li>
-</ol>
-</div>
-<div id="anatomy-of-an-r-markdown-document" class="section level2 hasAnchor" number="3.3">
-<h2><span class="header-section-number">3.3</span> Anatomy of an R Markdown document<a href="getting-started-with-r-markdown.html#anatomy-of-an-r-markdown-document" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There are three basic components in an R Markdown document: the metadata, text, and code.</p>
-<p>Here’s the contents for a minimal R Markdown document (from <a href="https://bookdown.org/yihui/rmarkdown/basics.html" class="uri">https://bookdown.org/yihui/rmarkdown/basics.html</a>):</p>
-<p><img src="https://raw.githubusercontent.com/amlalejini/gvsu-cis635-2023w/main/lecture-material/week-02/media/minimal-rmd-example.png" /></p>
-<p>An R Markdown document should be a plain text file (i.e., don’t try to write one in google docs or microsoft word!) and conventionally has the <code>.Rmd</code> file extension.</p>
-<div id="frontmatter-metadata" class="section level3 hasAnchor" number="3.3.1">
-<h3><span class="header-section-number">3.3.1</span> Frontmatter (metadata)<a href="getting-started-with-r-markdown.html#frontmatter-metadata" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The metadata (or the frontmatter) specifies how your R Markdown should be compiled. E.g., the output file type, whether to include a table of contents, etc.</p>
-<p>The metadata should be written between a pair of three dashes <code>---</code> at the top of your document (see minimal example).</p>
-<p>For now, don’t worry too much about what you should include in your document metadata. For the most part, you can just use what RStudio includes in your document.</p>
-</div>
-<div id="text" class="section level3 hasAnchor" number="3.3.2">
-<h3><span class="header-section-number">3.3.2</span> Text<a href="getting-started-with-r-markdown.html#text" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The body of your document follows the metadata. Any text (i.e., everything that isn’t code) you include in your document should follow markdown syntax.</p>
-<p>If you’re not already familiar with markdown, read over this: <a href="https://www.markdownguide.org/getting-started" class="uri">https://www.markdownguide.org/getting-started</a>.</p>
+<div id="final-project---final-report" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">Chapter 9</span> Final project - Final report<a href="final-project---final-report.html#final-project---final-report" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Documenting your work is as important as building your data mining pipeline and generating results.
+If you don’t document your pipeline and your results and present them in an easily understood format, no one will ever know what you found!</p>
+<div id="format" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Format<a href="final-project---final-report.html#format" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Your final report can be prepared in a format of your choice.
+However, it must be clearly organized,
+use consistent formatting for citations/references,
+contain the required contents (see below),
+and <strong>I must be able to access it</strong>.
+To be safe, I would advise you to check with me before moving forward with a format.
+I cannot grade your report if I cannot access it.
+<strong>It is your responsibility to make sure that I can access it <em>before</em> you submit.</strong>
+(do not rely on me to answer my email after 5:00pm on the day your assignment is due 😉)</p>
+<p>Example formats you might choose to compose your report in:</p>
 <ul>
-<li>For basic markdown syntax, see: <a href="https://www.markdownguide.org/basic-syntax/" class="uri">https://www.markdownguide.org/basic-syntax/</a>. Being familiar with basic syntax should be just about everything you need for your homework assignments in this class.</li>
-<li>For more advanced markdown syntax, see: <a href="https://www.markdownguide.org/extended-syntax/" class="uri">https://www.markdownguide.org/extended-syntax/</a>.</li>
-<li>You can also refer to <a href="https://bookdown.org/yihui/rmarkdown/markdown-syntax.html#markdown-syntax">Section 2.5 in R Markdown: The Definitive Guide</a> for more info on markdown.</li>
+<li>Using R markdown to create a web-accessible HTML page.
+<ul>
+<li>This could support interactivity and allow you to embed code into your report.</li>
+</ul></li>
+<li>Using R markdown and Bookdown to create an eBook.
+<ul>
+<li>This could support interactivity and allow you to embed code into your report.</li>
+</ul></li>
+<li>Using LaTex to create a PDF
+<ul>
+<li>If you use LaTex, I suggest using <a href="https://www.overleaf.com/project">Overleaf</a>–it’s like google docs, but for LaTex.</li>
+</ul></li>
+<li>Using a conventional text editor to create a PDF</li>
+</ul>
+<p>If you plan to use this project in a larger portfolio to send to potential employers, I strongly recommend making your report into a well-formatted web page (interactive if possible).
+I am happy to explain how to do so if you are interested.</p>
+</div>
+<div id="contents" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Contents<a href="final-project---final-report.html#contents" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Your report should include the following sections:</p>
+<ul>
+<li>Introduction</li>
+<li>Related work</li>
+<li>Methods</li>
+<li>Results and Discussion</li>
+<li>Conclusion</li>
+<li>Data and Software Availability</li>
+<li>References</li>
+</ul>
+<p>You can (and probably should) include subsections within those sections.
+You may also embed code and its output directly into your document (e.g., as you would if using R markdown).</p>
+<p>If you want to deviate from this structure for some reason, you need to speak with me ahead of time (at least a week before the deadline).
+Good reasons for deviating from the required sections would be if you plan to submit your work to a conference or competition that requires a different organization, you are creating an interactive document that lends itself to a different organization.</p>
+<p>Below, I outline the points you must address in each section:</p>
+<div id="introduction-1" class="section level3 hasAnchor" number="9.2.1">
+<h3><span class="header-section-number">9.2.1</span> Introduction<a href="final-project---final-report.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Your introduction should:</p>
+<ul>
+<li>introduce your application domain and the specific problem you’re working on, providing enough background for readers to understand the value of your project</li>
+<li>motivate your project</li>
+<li>overview your approach</li>
+<li>overview your results</li>
 </ul>
 </div>
-<div id="code" class="section level3 hasAnchor" number="3.3.3">
-<h3><span class="header-section-number">3.3.3</span> Code<a href="getting-started-with-r-markdown.html#code" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In general, you can include code in your R Markdown documents in two ways:</p>
+<div id="related-work" class="section level3 hasAnchor" number="9.2.2">
+<h3><span class="header-section-number">9.2.2</span> Related work<a href="final-project---final-report.html#related-work" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Your related work section should:</p>
 <ul>
-<li>Inline code begin with <code>`r</code> and end with a <code>`</code>. E.g., <code>2</code> would render the result of <code>log(4, base=2)</code> inline.</li>
-<li>You can include a “code chunk” inside your R Markdown document. A code chunk begins with three backticks <code>```{r}</code> and end with three backticks (see minimal example above for an example). There are many options tha tyou can specify in the <code>{}</code> at the beginning of a code chunk. See <a href="https://yihui.org/knitr/options/" class="uri">https://yihui.org/knitr/options/</a> for details.</li>
+<li>discuss previous work done that relates to your project. For example,
+<ul>
+<li>alternative approaches to the problem you’re trying to solve</li>
+<li>other examples of your particular approach in your domain or in another domain</li>
+</ul></li>
+<li>include a minimum of three relevant references to academic publications</li>
+</ul>
+<p>Your related work should include appropriate references to academic publications (e.g., found using google scholar, pubmed, etc.)
+A good related work section will likely reference (and overview) several related academic publications.</p>
+</div>
+<div id="methods" class="section level3 hasAnchor" number="9.2.3">
+<h3><span class="header-section-number">9.2.3</span> Methods<a href="final-project---final-report.html#methods" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Your methods section should:</p>
+<ul>
+<li>describe how you chose your data and/or how you collected your data</li>
+<li>describe your data mining pipeline in sufficient detail such that someone could replicate your project
+<ul>
+<li>What data preprocessing did you perform? Which data mining algorithms did you apply (and how)? What postprocessing did you do?</li>
+</ul></li>
+<li>describe any analyses you performed to evaluate your model</li>
+<li>describe the software</li>
+</ul>
+<p>You may wish to include diagrams that overview methodology.</p>
+</div>
+<div id="results-and-discussion" class="section level3 hasAnchor" number="9.2.4">
+<h3><span class="header-section-number">9.2.4</span> Results and discussion<a href="final-project---final-report.html#results-and-discussion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You results and discussion section should:
+- describe your results
+- discuss how your results fit into a broader context
+- should include publication-quality visualizations that effectively communicate your results
+- Depending on the format you use for your final report, you may also wish to embed interactive visualizations.</p>
+<p>For example, you might present the performance of your data mining approach and discuss how it compares to a baseline/alternative method.</p>
+</div>
+<div id="conclusion" class="section level3 hasAnchor" number="9.2.5">
+<h3><span class="header-section-number">9.2.5</span> Conclusion<a href="final-project---final-report.html#conclusion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Your conclusion should:</p>
+<ul>
+<li>very briefly summarize your findings</li>
+<li>discuss any limitations/shortcomings of your approach/experiments</li>
+<li>suggest future work (e.g., possible extensions to your project)</li>
 </ul>
 </div>
-</div>
-<div id="knitting" class="section level2 hasAnchor" number="3.4">
-<h2><span class="header-section-number">3.4</span> “Knitting”<a href="getting-started-with-r-markdown.html#knitting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>To compile an R Markdown document into a PDF or HTML file, you need to “Knit” it. In RStudio, this is pretty straightforward. Just click the “Knit” button on your document in RStudio.</p>
-</div>
-<div id="resources" class="section level2 hasAnchor" number="3.5">
-<h2><span class="header-section-number">3.5</span> Resources<a href="getting-started-with-r-markdown.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-and-software-availability" class="section level3 hasAnchor" number="9.2.6">
+<h3><span class="header-section-number">9.2.6</span> Data and software availability<a href="final-project---final-report.html#data-and-software-availability" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Your data and software availability section should:</p>
 <ul>
-<li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></li>
-<li>Code chunk options: <a href="https://yihui.org/knitr/options/" class="uri">https://yihui.org/knitr/options/</a></li>
+<li>provide a working link to where your software can be found and downloaded (e.g., a github repository)</li>
+<li>provide a working link to where your data can be downloaded</li>
 </ul>
+<p>If either of those are not feasible for your project (e.g., you collected your own dataset and it’s huge), let me know at least a week before the deadline (the sooner you let me know, the better).</p>
+</div>
+<div id="references" class="section level3 hasAnchor" number="9.2.7">
+<h3><span class="header-section-number">9.2.7</span> References<a href="final-project---final-report.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Your references should be consistenly formatted such that a reader can find each reference (e.g., include authors, year, title, venue/journal, DOI).</p>
+<p>If you use Rmd, Bookdown, or LaTex to create your report, I can help you configure things such that your references are automatically formatted for you.</p>
+</div>
+</div>
+<div id="deliverables-2" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Deliverables<a href="final-project---final-report.html#deliverables-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Submit your report through Blackboard.
+If your report is a .pdf file, attach it to the submission.
+If your report is a live webpage, include a (working) link.</p>
+<p>One submission per group.
+Include in the comments section of the assignment the names of the group members.</p>
+<p>As part of your report, you will need to include working links to your code and data (e.g., in a github repository).</p>
+</div>
+<div id="grading-6" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Grading<a href="final-project---final-report.html#grading-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Your final report will be graded on the following out of 100:</p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Title accurately describes your project/findings</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Introduction</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Related work</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Methods</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Results and discussion</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Conclusion</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Data and software availability</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>References are consistently formatted</td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>Code can be compiled/executed using provided instructions</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td>Report is well-organized into proper sections, paragraphs follow logical structure</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>Report is sufficiently professional (few spelling and gramatical errors)</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>I reserve the right to award flex points for exemplary work in any areas of this project.</p>
+<p>All components of your final project are subject to GVSU and the School of Computing’s academic honesty policies.
+Violations of these policies may result in failure from the course.</p>
 
 </div>
 </div>
@@ -347,8 +469,8 @@ tinytex::install_tinytex()</code></pre>
           </div>
         </div>
       </div>
-<a href="homework-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="homework-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="final-project---report-draft.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -379,7 +501,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/amlalejini/gvsu-cis635-2023w/tree/main/lecture-material/week-02/rmarkdown-getting-started.Rmd",
+"link": "https://github.com/amlalejini/gvsu-cis635-2023w/tree/main/project/final-report.md",
 "text": "Edit"
 },
 "history": {
