@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 13 Final project - Proposal | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)</title>
-  <meta name="description" content="Chapter 13 Final project - Proposal | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <title>Chapter 6 Functions in R | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)</title>
+  <meta name="description" content="Chapter 6 Functions in R | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 13 Final project - Proposal | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <meta property="og:title" content="Chapter 6 Functions in R | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="amlalejini/gvsu-cis635-2023w" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 13 Final project - Proposal | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <meta name="twitter:title" content="Chapter 6 Functions in R | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="final-project-overview.html"/>
-<link rel="next" href="final-project---mid-project-update.html"/>
+<link rel="prev" href="week-03---overview.html"/>
+<link rel="next" href="reading-and-writing-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -318,174 +318,107 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="final-project---proposal" class="section level1 hasAnchor" number="13">
-<h1><span class="header-section-number">Chapter 13</span> Final project - Proposal<a href="final-project---proposal.html#final-project---proposal" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Your project proposal serves two purposes:</p>
-<ol style="list-style-type: decimal">
-<li>for you to end up with a solid plan for your project, and</li>
-<li>for me to evaluate whether your project fits my expectations and help you to improve it where it doesn’t</li>
-</ol>
-<div id="project-expectations" class="section level2 hasAnchor" number="13.1">
-<h2><span class="header-section-number">13.1</span> Project expectations<a href="final-project---proposal.html#project-expectations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In your project, you will choose a data mining application domain and develop a data mining pipeline for a specific problem.
-The particular application area, techniques you choose to use, and the outputs of your project are open-ended and up to you to propose.
-Be creative!</p>
-<p>However, I do have the following expectations for all projects:</p>
+<div id="functions-in-r" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Functions in R<a href="functions-in-r.html#functions-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>You can download the R Markdown file used to generate this document (or webpage) <a href="https://raw.githubusercontent.com/amlalejini/gvsu-cis635-2023w/main/lecture-material/week-03/functions.Rmd">here</a>.
+I would encourage you to download that Rmd file, open it own your own computer in RStudio, and run the code chunks on your own (and modify things as you wish!).</p>
+<p>In this tutorial,</p>
 <ul>
-<li>I expect you to design and implement a complete data mining pipeline from start to finish.</li>
-<li>I expect your project to be well-researched, appropriate, and achievable in the given time frame.
-<ul>
-<li>If you’re unsure, come chat with me during office hours!</li>
-</ul></li>
-<li>I expect you to either collect your own dataset or use a publicly available dataset.</li>
-<li>I expect you to evaluate your data mining approach in some way.
-<ul>
-<li>Conducting a small study that compares your approach to an alternative approach,</li>
-<li>Assessing the accuracy of your model by holding back validation data,</li>
-<li>Assessing the robustness of your model,</li>
-<li>Etc.</li>
-</ul></li>
-<li>I expect you to effectively communicate your methodology and findings in a final report.
-<ul>
-<li>This will take the form of a well-organized and well-written explanations with publication-quality visualzations.</li>
-</ul></li>
+<li>We’ll go over argument order and default values when calling functions in R</li>
+<li>We’ll go over the basics of writing functions in R</li>
 </ul>
-<p>I will consider the <em>overall</em> difficulty of your project when determining whether or not it is sufficient (or infeasible) for your final project.
-For example, if your are collecting your own data, your pipeline will need to be simpler because of the extra time and effort requried for data collection.</p>
+<div id="argument-order-and-default-values" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Argument order and default values<a href="functions-in-r.html#argument-order-and-default-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As you encountered last week, R has many built-in functions (e.g., <code>abs</code>, <code>round</code>, etc), and all of R packages that you install provide even more functions that you can use.
+<em>Using</em> an existing function is simple.
+Write the name of the function you want to use followed by the requisite arguments in parentheses.
+For example,</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="functions-in-r.html#cb11-1" aria-hidden="true" tabindex="-1"></a>value <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">15</span></span>
+<span id="cb11-2"><a href="functions-in-r.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(value)</span></code></pre></div>
+<pre><code>## [1] 15</code></pre>
+<p>or,</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="functions-in-r.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">4</span>, <span class="at">base=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<p>If you look at the documentation for <code>abs</code> (enter <code>?abs</code> into your R console), there’s only one argument (<code>x</code>), and <code>x</code> is <em>required</em> (i.e., notice that it has no default values).</p>
+<p>In contrast, run <code>?log</code> function in your R console.
+Notice that there are two possible arguments for <code>log</code>, <code>x</code> and <code>base</code>.
+<code>x</code> is required, as it has no default value, but <code>base</code> is optional, defaulting to <code>exp(1)</code> if not provided.</p>
+<p>Let’s say we want to take the <span class="math inline">\(log_3\)</span> of 27.
+To do so, we’ll need to specify both the <code>x</code> and <code>base</code> arguments, but there are a few ways that we can do that.</p>
+<p>For example, we could call <code>log</code> with each argument in the correct position:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="functions-in-r.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">27</span>, <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>We could call <code>log</code> as I did above with <code>log(4, base=2)</code>:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="functions-in-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">27</span>, <span class="at">base=</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>In this case, R relies on argument position to deduce which argument is which up until the first named variable.</p>
+<p>We could also specify all arguments using their names:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="functions-in-r.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="at">x=</span><span class="dv">27</span>, <span class="at">base=</span><span class="dv">3</span>)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>If you specify arguments this way (using their names), argument order doesn’t matter.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="functions-in-r.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(<span class="at">base=</span><span class="dv">3</span>, <span class="at">x=</span><span class="dv">27</span>)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>When calling a function with multiple arguments, <strong>I strongly encourage you to specify arguments by name.</strong></p>
 </div>
-<div id="proposal-guidelines" class="section level2 hasAnchor" number="13.2">
-<h2><span class="header-section-number">13.2</span> Proposal guidelines<a href="final-project---proposal.html#proposal-guidelines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Your project proposal should be under 3 pages, be formatted under the following headings, and address each of the following points:</p>
-<ol style="list-style-type: decimal">
-<li><strong>Project overview</strong></li>
-</ol>
-<ul>
-<li>Provide an overview of your project.</li>
-<li>What is the application domain you are working on?</li>
-<li>What specific problem are you working on?</li>
-<li>Briefly, what is your overall approach?</li>
-<li>Why? What is your motivation?</li>
-<li>What are your goals for this project?</li>
-</ul>
-<ol start="2" style="list-style-type: decimal">
-<li><strong>Related work</strong></li>
-</ol>
-<ul>
-<li>What similar projects have been attempted in your proposed domain? How do they related to your project?</li>
-</ul>
-<ol start="3" style="list-style-type: decimal">
-<li><strong>Data plan</strong></li>
-</ol>
-<ul>
-<li>What data do you plan to use for your project?</li>
-<li>If you plan on collecting your own data, how do you plan to do so?</li>
-<li>If you plan to use an existing dataset, which dataset do you plan to use and why? Who collected your data and for what original purpose?</li>
-<li>What proprocessing do you expect to need to perform on your data?</li>
-</ul>
-<ol start="4" style="list-style-type: decimal">
-<li><strong>Implementation plan</strong></li>
-</ol>
-<ul>
-<li>Describe your proposed data mining pipeline</li>
-<li>How will you implement your data mining pipeline?</li>
-<li>What components do you plan to use existing software/libraries for? Which software/libraries do you plan to use?</li>
-</ul>
-<ol start="5" style="list-style-type: decimal">
-<li><strong>Evaluation plan</strong></li>
-</ol>
-<ul>
-<li>How do you plan to evaluate your data mining algorithm?</li>
-<li>Provide a broad overview of how you plan to evaluate your approach. How will you measure success? Will you compare to an alternative method? Measure accuracy with a ground truth testing set?</li>
-</ul>
-<ol start="6" style="list-style-type: decimal">
-<li><strong>Plan for group collaboration</strong></li>
-</ol>
-<ul>
-<li>What is your plan for collaborating as a group? Do you plan to meet regularly in-person, over zoom, or coordinate asynchronously on a messaging application like discord?</li>
-<li>How do you plan to collaboratively implement your data mining pipeline? How will you manage your code and your data?</li>
-</ul>
-<ol start="7" style="list-style-type: decimal">
-<li><strong>Timeline</strong></li>
-</ol>
-<ul>
-<li>Outline your week-by-week goals for completing your project by the final report deadline</li>
-<li>Feel free to communicate this timeline as a bulleted list, a table, etc.</li>
-</ul>
-<ol start="8" style="list-style-type: decimal">
-<li><strong>References</strong></li>
-</ol>
-<ul>
-<li>List your references.</li>
-</ul>
-<p>Include a project title and the members of your group as part of your proposal.
-Your proposal should be organized into clearly labeled sections (one to address each of the eight categories above).
-Each section should be written in paragraph form (with the exception of the references and the timeline section where you may opt to use a list or a table).
-Your proposal will be graded on the quality of your writing as well as your answers to the previously listed prompts.</p>
-<p>It should be evident that your group has thoroughly researched the area and formulated a plan to achieve your goals.
-I recognize that things may change during the course of the project, but I’m looking here to make sure you have a solid initial plan.
-Any significant project like this requires significant prework before implementation.</p>
+<div id="writing-your-own-functions" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Writing your own functions<a href="functions-in-r.html#writing-your-own-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To write a function in R, the general structure is as follows:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="functions-in-r.html#cb23-1" aria-hidden="true" tabindex="-1"></a>my_function <span class="ot">&lt;-</span> <span class="cf">function</span>(parameters) {</span>
+<span id="cb23-2"><a href="functions-in-r.html#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Perform some actions using the given parameters.</span></span>
+<span id="cb23-3"><a href="functions-in-r.html#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Optionally, return some value</span></span>
+<span id="cb23-4"><a href="functions-in-r.html#cb23-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>We can write a function that rolls a die for us like so:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="functions-in-r.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This function rolls a six-sided die.</span></span>
+<span id="cb24-2"><a href="functions-in-r.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Run ?sample in your console if you&#39;re curious about how the sample function</span></span>
+<span id="cb24-3"><a href="functions-in-r.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># works.</span></span>
+<span id="cb24-4"><a href="functions-in-r.html#cb24-4" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb24-5"><a href="functions-in-r.html#cb24-5" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb24-6"><a href="functions-in-r.html#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb24-7"><a href="functions-in-r.html#cb24-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Currently, <code>roll_d6</code> will always simulate rolling a six-sided die.
+We could modify our function definition to add an argument that specifies the size of the die:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="functions-in-r.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This function simulates rolling a die with a given number of sides.</span></span>
+<span id="cb25-2"><a href="functions-in-r.html#cb25-2" aria-hidden="true" tabindex="-1"></a>roll <span class="ot">&lt;-</span> <span class="cf">function</span>(sides) {</span>
+<span id="cb25-3"><a href="functions-in-r.html#cb25-3" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span>sides, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb25-4"><a href="functions-in-r.html#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb25-5"><a href="functions-in-r.html#cb25-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Note that when we run the code chunk above, we are redefining our <code>roll</code> function.</p>
+<p><strong>Challenge question:</strong> Try writing your own roll function that rolls an argument-specified number of dice (where the number of sides of each die is specified by an argument) and then returns the sum of those rolls.</p>
 </div>
-<div id="grading-3" class="section level2 hasAnchor" number="13.3">
-<h2><span class="header-section-number">13.3</span> Grading<a href="final-project---proposal.html#grading-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The proposal will be graded as follows (out of 100):</p>
-<table>
-<thead>
-<tr class="header">
-<th>Item</th>
-<th>Points</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Project overview section addresses required points</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>Related work section addresses required points</td>
-<td>15</td>
-</tr>
-<tr class="odd">
-<td>Data plan section addresses required points</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>Implementation plan section addresses required points</td>
-<td>15</td>
-</tr>
-<tr class="odd">
-<td>Evaluation plan section addresses required points</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>Plan for group collaboration section addresses required points</td>
-<td>10</td>
-</tr>
-<tr class="odd">
-<td>Timeline section addresses required points</td>
-<td>10</td>
-</tr>
-<tr class="even">
-<td>Related work and references are included and cited appropriately</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td>Writing is appropriately formal</td>
-<td>5</td>
-</tr>
-<tr class="even">
-<td>Writing is clear</td>
-<td>5</td>
-</tr>
-<tr class="odd">
-<td>Proposal is well-formatted</td>
-<td>5</td>
-</tr>
-</tbody>
-</table>
-<p>I reserve the right to award flex points for exemplary work in any areas of this project.</p>
-<p>All components of your final project are subject to GVSU and the School of Computing’s academic honesty policies.
-Violations of these policies may result in failure from the course.
-You will recieve no credit for a proposal that violates the academic honesty policy in any way.</p>
+<div id="return-values" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Return values<a href="functions-in-r.html#return-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In the <code>roll</code> functions that we wrote, we explicitly specified what the functions should return.
+However, if you do not use <code>return()</code> to specify what should be returned, the last evaluated expression is returned automatically.
+If the last evaluated expression doesn’t produce a value, your function will not return a value.</p>
+<p>I generally prefer to use explicit return statements because it lets me quickly identify what my functions are returning.</p>
+<p>Here’s a silly function:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="functions-in-r.html#cb26-1" aria-hidden="true" tabindex="-1"></a>silly_function <span class="ot">&lt;-</span> <span class="cf">function</span>(a) {</span>
+<span id="cb26-2"><a href="functions-in-r.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (a <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb26-3"><a href="functions-in-r.html#cb26-3" aria-hidden="true" tabindex="-1"></a>    a <span class="sc">+</span> <span class="dv">100</span></span>
+<span id="cb26-4"><a href="functions-in-r.html#cb26-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (a <span class="sc">==</span> <span class="dv">2</span>) {</span>
+<span id="cb26-5"><a href="functions-in-r.html#cb26-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">200</span></span>
+<span id="cb26-6"><a href="functions-in-r.html#cb26-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (a <span class="sc">==</span> <span class="dv">3</span>) {</span>
+<span id="cb26-7"><a href="functions-in-r.html#cb26-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">300</span>)</span>
+<span id="cb26-8"><a href="functions-in-r.html#cb26-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb26-9"><a href="functions-in-r.html#cb26-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb26-10"><a href="functions-in-r.html#cb26-10" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Try calling <code>silly_function</code> with different inputs to see what it returns.</p>
+</div>
+<div id="default-argument-values" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Default argument values<a href="functions-in-r.html#default-argument-values" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Just like many built-in functions have some arguments with defualt values, you can define your functions such their arguments have default values.
+All you need to do is specify the default value of an argument when you define the function.</p>
+<p>For example, if we wrote a function that calculates the price something with a sales tax included, we might specify a default tax rate for convenience.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="functions-in-r.html#cb27-1" aria-hidden="true" tabindex="-1"></a>price_with_tax <span class="ot">&lt;-</span> <span class="cf">function</span>(price, <span class="at">tax_rate=</span><span class="fl">0.06</span>) {</span>
+<span id="cb27-2"><a href="functions-in-r.html#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(price<span class="sc">+</span>(price<span class="sc">*</span>tax_rate))</span>
+<span id="cb27-3"><a href="functions-in-r.html#cb27-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="resources-1" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Resources<a href="functions-in-r.html#resources-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><a href="https://rstudio-education.github.io/hopr/basics.html#functions">Hands-on Programming with R (2.3, 2.4)</a></li>
+<li><a href="https://swcarpentry.github.io/r-novice-gapminder/10-functions/index.html">Software carpentry lesson on writing functions in R</a></li>
+</ul>
 
 </div>
 </div>
@@ -494,8 +427,8 @@ You will recieve no credit for a proposal that violates the academic honesty pol
           </div>
         </div>
       </div>
-<a href="final-project-overview.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="final-project---mid-project-update.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="week-03---overview.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reading-and-writing-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -526,7 +459,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/amlalejini/gvsu-cis635-2023w/tree/main/project/proposal.md",
+"link": "https://github.com/amlalejini/gvsu-cis635-2023w/tree/main/lecture-material/week-03/functions.Rmd",
 "text": "Edit"
 },
 "history": {
