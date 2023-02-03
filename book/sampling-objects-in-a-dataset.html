@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 2 Homework 1 | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)</title>
-  <meta name="description" content="Chapter 2 Homework 1 | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <title>Chapter 15 Sampling objects in a dataset | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)</title>
+  <meta name="description" content="Chapter 15 Sampling objects in a dataset | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 2 Homework 1 | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <meta property="og:title" content="Chapter 15 Sampling objects in a dataset | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
   <meta property="og:type" content="book" />
   
   
   <meta name="github-repo" content="amlalejini/gvsu-cis635-2023w" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 2 Homework 1 | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
+  <meta name="twitter:title" content="Chapter 15 Sampling objects in a dataset | GVSU CIS 635 - Knowledge Discovery and Data Mining (Winter 2023)" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="getting-started-with-r-markdown.html"/>
+<link rel="prev" href="dealing-with-missing-values.html"/>
+<link rel="next" href="curse-of-dimensionality-demo.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -381,105 +381,224 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="homework-1" class="section level1 hasAnchor" number="2">
-<h1><span class="header-section-number">Chapter 2</span> Homework 1<a href="homework-1.html#homework-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="overview" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Overview<a href="homework-1.html#overview" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="objectives" class="section level3 hasAnchor" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> Objectives<a href="homework-1.html#objectives" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="sampling-objects-in-a-dataset" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Chapter 15</span> Sampling objects in a dataset<a href="sampling-objects-in-a-dataset.html#sampling-objects-in-a-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this lab activity, we will demonstrate two methods of sampling objects in a dataset:</p>
 <ul>
-<li>Read through the course syllabus</li>
-<li>Identify nominal versus ordinal attributes</li>
-<li>Consider general data mining tasks</li>
+<li>Naive random sampling</li>
+<li>Stratified random sampling</li>
+</ul>
+<p>Sampling is a common method of dealing with a huge number of objects/observations in a dataset.</p>
+<div id="dependencies-and-setup-1" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Dependencies and setup<a href="sampling-objects-in-a-dataset.html#dependencies-and-setup-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this activity, we’ll be using the following R packages:</p>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="sampling-objects-in-a-dataset.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>We’ll sample from our handy-dandy Star Wars data set:</p>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="sampling-objects-in-a-dataset.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(starwars)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 14
+##   name         height  mass hair_…¹ skin_…² eye_c…³ birth…⁴ sex   gender homew…⁵
+##   &lt;chr&gt;         &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
+## 1 Luke Skywal…    172    77 blond   fair    blue       19   male  mascu… Tatooi…
+## 2 C-3PO           167    75 &lt;NA&gt;    gold    yellow    112   none  mascu… Tatooi…
+## 3 R2-D2            96    32 &lt;NA&gt;    white,… red        33   none  mascu… Naboo  
+## 4 Darth Vader     202   136 none    white   yellow     41.9 male  mascu… Tatooi…
+## 5 Leia Organa     150    49 brown   light   brown      19   fema… femin… Aldera…
+## 6 Owen Lars       178   120 brown,… light   blue       52   male  mascu… Tatooi…
+## # … with 4 more variables: species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
+## #   starships &lt;list&gt;, and abbreviated variable names ¹​hair_color, ²​skin_color,
+## #   ³​eye_color, ⁴​birth_year, ⁵​homeworld</code></pre>
+</div>
+<div id="random-sampling" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Random sampling<a href="sampling-objects-in-a-dataset.html#random-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In naive random sampling, we simply randomly sample rows from our dataset.
+In this example, we’ll sample without replacement: we don’t want to characters more than once in our down-sampled dataset.</p>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="sampling-objects-in-a-dataset.html#cb138-1" aria-hidden="true" tabindex="-1"></a>sample_proportion <span class="ot">&lt;-</span> <span class="fl">0.2</span> <span class="co"># Down-sample down to just this % of our full data set</span></span>
+<span id="cb138-2"><a href="sampling-objects-in-a-dataset.html#cb138-2" aria-hidden="true" tabindex="-1"></a>sample_size <span class="ot">&lt;-</span> <span class="fu">ceiling</span>(sample_proportion <span class="sc">*</span> <span class="fu">nrow</span>(starwars)) <span class="co"># Sample size, round up.</span></span></code></pre></div>
+<p>We can use <code>slice_sample</code> from the <code>dplyr</code> package to randomly sample star wars characters.</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="sampling-objects-in-a-dataset.html#cb139-1" aria-hidden="true" tabindex="-1"></a>naive_sampled_data <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span></span>
+<span id="cb139-2"><a href="sampling-objects-in-a-dataset.html#cb139-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_sample</span>(</span>
+<span id="cb139-3"><a href="sampling-objects-in-a-dataset.html#cb139-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">n=</span>sample_size,</span>
+<span id="cb139-4"><a href="sampling-objects-in-a-dataset.html#cb139-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">replace=</span><span class="cn">FALSE</span></span>
+<span id="cb139-5"><a href="sampling-objects-in-a-dataset.html#cb139-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb139-6"><a href="sampling-objects-in-a-dataset.html#cb139-6" aria-hidden="true" tabindex="-1"></a>naive_sampled_data</span></code></pre></div>
+<pre><code>## # A tibble: 18 × 14
+##    name        height  mass hair_…¹ skin_…² eye_c…³ birth…⁴ sex   gender homew…⁵
+##    &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
+##  1 Ackbar         180  83   none    brown … orange     41   male  mascu… Mon Ca…
+##  2 Eeth Koth      171  NA   black   brown   brown      NA   male  mascu… Iridon…
+##  3 Darth Vader    202 136   none    white   yellow     41.9 male  mascu… Tatooi…
+##  4 Jek Tono P…    180 110   brown   fair    blue       NA   male  mascu… Bestin…
+##  5 Poggle the…    183  80   none    green   yellow     NA   male  mascu… Geonos…
+##  6 Dexter Jet…    198 102   none    brown   yellow     NA   male  mascu… Ojom   
+##  7 Bail Prest…    191  NA   black   tan     brown      67   male  mascu… Aldera…
+##  8 Plo Koon       188  80   none    orange  black      22   male  mascu… Dorin  
+##  9 Boba Fett      183  78.2 black   fair    brown      31.5 male  mascu… Kamino 
+## 10 Leia Organa    150  49   brown   light   brown      19   fema… femin… Aldera…
+## 11 Ratts Tyer…     79  15   none    grey, … unknown    NA   male  mascu… Aleen …
+## 12 Arvel Cryn…     NA  NA   brown   fair    brown      NA   male  mascu… &lt;NA&gt;   
+## 13 Roos Tarpa…    224  82   none    grey    orange     NA   male  mascu… Naboo  
+## 14 Yarael Poof    264  NA   none    white   yellow     NA   male  mascu… Quermia
+## 15 Qui-Gon Ji…    193  89   brown   fair    blue       92   male  mascu… &lt;NA&gt;   
+## 16 BB8             NA  NA   none    none    black      NA   none  mascu… &lt;NA&gt;   
+## 17 Luke Skywa…    172  77   blond   fair    blue       19   male  mascu… Tatooi…
+## 18 Bossk          190 113   none    green   red        53   male  mascu… Trando…
+## # … with 4 more variables: species &lt;chr&gt;, films &lt;list&gt;, vehicles &lt;list&gt;,
+## #   starships &lt;list&gt;, and abbreviated variable names ¹​hair_color, ²​skin_color,
+## #   ³​eye_color, ⁴​birth_year, ⁵​homeworld</code></pre>
+<p>Take a look at <code>naive_sampled_data</code>.
+What are some ways that our random sample might not be representative of our larger data set (<code>starwars</code>)?</p>
+<p>For example, we can look at the distribution of homeworlds in our original data.</p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="sampling-objects-in-a-dataset.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the distribution of homeworlds in full dataset.</span></span>
+<span id="cb141-2"><a href="sampling-objects-in-a-dataset.html#cb141-2" aria-hidden="true" tabindex="-1"></a>orig_homeworlds <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span></span>
+<span id="cb141-3"><a href="sampling-objects-in-a-dataset.html#cb141-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(</span>
+<span id="cb141-4"><a href="sampling-objects-in-a-dataset.html#cb141-4" aria-hidden="true" tabindex="-1"></a>    homeworld</span>
+<span id="cb141-5"><a href="sampling-objects-in-a-dataset.html#cb141-5" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb141-6"><a href="sampling-objects-in-a-dataset.html#cb141-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb141-7"><a href="sampling-objects-in-a-dataset.html#cb141-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">n=</span><span class="fu">n</span>()</span>
+<span id="cb141-8"><a href="sampling-objects-in-a-dataset.html#cb141-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb141-9"><a href="sampling-objects-in-a-dataset.html#cb141-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb141-10"><a href="sampling-objects-in-a-dataset.html#cb141-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">freq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n),</span>
+<span id="cb141-11"><a href="sampling-objects-in-a-dataset.html#cb141-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb141-12"><a href="sampling-objects-in-a-dataset.html#cb141-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(</span>
+<span id="cb141-13"><a href="sampling-objects-in-a-dataset.html#cb141-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">desc</span>(freq)</span>
+<span id="cb141-14"><a href="sampling-objects-in-a-dataset.html#cb141-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb141-15"><a href="sampling-objects-in-a-dataset.html#cb141-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb141-16"><a href="sampling-objects-in-a-dataset.html#cb141-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the distribution of homeworlds in the sampled dataset.</span></span>
+<span id="cb141-17"><a href="sampling-objects-in-a-dataset.html#cb141-17" aria-hidden="true" tabindex="-1"></a>sampled_homeworlds <span class="ot">&lt;-</span> naive_sampled_data <span class="sc">%&gt;%</span></span>
+<span id="cb141-18"><a href="sampling-objects-in-a-dataset.html#cb141-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(</span>
+<span id="cb141-19"><a href="sampling-objects-in-a-dataset.html#cb141-19" aria-hidden="true" tabindex="-1"></a>    homeworld</span>
+<span id="cb141-20"><a href="sampling-objects-in-a-dataset.html#cb141-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb141-21"><a href="sampling-objects-in-a-dataset.html#cb141-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb141-22"><a href="sampling-objects-in-a-dataset.html#cb141-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">n=</span><span class="fu">n</span>()</span>
+<span id="cb141-23"><a href="sampling-objects-in-a-dataset.html#cb141-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb141-24"><a href="sampling-objects-in-a-dataset.html#cb141-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb141-25"><a href="sampling-objects-in-a-dataset.html#cb141-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">freq =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n),</span>
+<span id="cb141-26"><a href="sampling-objects-in-a-dataset.html#cb141-26" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb141-27"><a href="sampling-objects-in-a-dataset.html#cb141-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(</span>
+<span id="cb141-28"><a href="sampling-objects-in-a-dataset.html#cb141-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">desc</span>(freq)</span>
+<span id="cb141-29"><a href="sampling-objects-in-a-dataset.html#cb141-29" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p>Let’s take a look at the distribution of homeworlds from the original dataset:</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="sampling-objects-in-a-dataset.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb142-2"><a href="sampling-objects-in-a-dataset.html#cb142-2" aria-hidden="true" tabindex="-1"></a>    orig_homeworlds,</span>
+<span id="cb142-3"><a href="sampling-objects-in-a-dataset.html#cb142-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb142-4"><a href="sampling-objects-in-a-dataset.html#cb142-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">x=</span><span class="fu">reorder</span>(homeworld, <span class="sc">-</span>freq),</span>
+<span id="cb142-5"><a href="sampling-objects-in-a-dataset.html#cb142-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">y=</span>freq</span>
+<span id="cb142-6"><a href="sampling-objects-in-a-dataset.html#cb142-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb142-7"><a href="sampling-objects-in-a-dataset.html#cb142-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb142-8"><a href="sampling-objects-in-a-dataset.html#cb142-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb142-9"><a href="sampling-objects-in-a-dataset.html#cb142-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb142-10"><a href="sampling-objects-in-a-dataset.html#cb142-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">&quot;Homeworld&quot;</span>,</span>
+<span id="cb142-11"><a href="sampling-objects-in-a-dataset.html#cb142-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">&quot;Frequency&quot;</span>,</span>
+<span id="cb142-12"><a href="sampling-objects-in-a-dataset.html#cb142-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">&quot;Distribution of homeworlds for original dataset&quot;</span></span>
+<span id="cb142-13"><a href="sampling-objects-in-a-dataset.html#cb142-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb142-14"><a href="sampling-objects-in-a-dataset.html#cb142-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb142-15"><a href="sampling-objects-in-a-dataset.html#cb142-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>)</span>
+<span id="cb142-16"><a href="sampling-objects-in-a-dataset.html#cb142-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="demo_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
+<p>And now the sampled dataset:</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="sampling-objects-in-a-dataset.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb143-2"><a href="sampling-objects-in-a-dataset.html#cb143-2" aria-hidden="true" tabindex="-1"></a>    sampled_homeworlds,</span>
+<span id="cb143-3"><a href="sampling-objects-in-a-dataset.html#cb143-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(</span>
+<span id="cb143-4"><a href="sampling-objects-in-a-dataset.html#cb143-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">x=</span><span class="fu">reorder</span>(homeworld, <span class="sc">-</span>freq),</span>
+<span id="cb143-5"><a href="sampling-objects-in-a-dataset.html#cb143-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">y=</span>freq</span>
+<span id="cb143-6"><a href="sampling-objects-in-a-dataset.html#cb143-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb143-7"><a href="sampling-objects-in-a-dataset.html#cb143-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb143-8"><a href="sampling-objects-in-a-dataset.html#cb143-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb143-9"><a href="sampling-objects-in-a-dataset.html#cb143-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb143-10"><a href="sampling-objects-in-a-dataset.html#cb143-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x=</span><span class="st">&quot;Homeworld&quot;</span>,</span>
+<span id="cb143-11"><a href="sampling-objects-in-a-dataset.html#cb143-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y=</span><span class="st">&quot;Frequency&quot;</span>,</span>
+<span id="cb143-12"><a href="sampling-objects-in-a-dataset.html#cb143-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">title=</span><span class="st">&quot;Distribution of homeworlds for sampled dataset&quot;</span></span>
+<span id="cb143-13"><a href="sampling-objects-in-a-dataset.html#cb143-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb143-14"><a href="sampling-objects-in-a-dataset.html#cb143-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb143-15"><a href="sampling-objects-in-a-dataset.html#cb143-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">angle=</span><span class="dv">45</span>, <span class="at">hjust=</span><span class="dv">1</span>)</span>
+<span id="cb143-16"><a href="sampling-objects-in-a-dataset.html#cb143-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="demo_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<div id="exercises-3" class="section level3 hasAnchor" number="15.2.1">
+<h3><span class="header-section-number">15.2.1</span> Exercises<a href="sampling-objects-in-a-dataset.html#exercises-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>What differences do you notice between the distribution of homeworlds in the original dataset and the sampled dataset?</li>
+<li>How could you modify <code>slice_sample</code> to randomly sample, but instead of weighting all rows equally, you weight each row’s likelihood of being included in the sample according to the height attribute?
+Hint: <code>?slice_sample</code></li>
+<li>Adjust the sample proportion parameter and resample. What happens to the distribution of <code>species</code> as you increase or decrease the sample size?</li>
+<li>Read the R code. Identify any lines of code that you don’t understand. Use the documentation to figure out what those lines of code are doing.</li>
 </ul>
 </div>
-<div id="grading" class="section level3 hasAnchor" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> Grading<a href="homework-1.html#grading" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="stratified-random-sampling" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">15.3</span> Stratified random sampling<a href="sampling-objects-in-a-dataset.html#stratified-random-sampling" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Stratified sampling can be used in cases where there are predefined groupings of objects.
+In stratified sampling, you enforce the level of representation for each group.</p>
+<p>For example, we might want to ensure that each species among Star Wars characters is represented in our sample.
+There are many ways to implement this, and the particular approach you take will depend on your objective.
+In this example, I’ll randomly sample each species independently, guaranteeing that at least one character of each species is represented in our sample.</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="sampling-objects-in-a-dataset.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grab the set of species represented in our original dataset</span></span>
+<span id="cb144-2"><a href="sampling-objects-in-a-dataset.html#cb144-2" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">levels</span>(<span class="fu">as.factor</span>(starwars<span class="sc">$</span>species))</span>
+<span id="cb144-3"><a href="sampling-objects-in-a-dataset.html#cb144-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty data frame that we will store our sample</span></span>
+<span id="cb144-4"><a href="sampling-objects-in-a-dataset.html#cb144-4" aria-hidden="true" tabindex="-1"></a>stratified_sampled_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb144-5"><a href="sampling-objects-in-a-dataset.html#cb144-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">matrix</span>(</span>
+<span id="cb144-6"><a href="sampling-objects-in-a-dataset.html#cb144-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">ncol=</span><span class="fu">ncol</span>(starwars),</span>
+<span id="cb144-7"><a href="sampling-objects-in-a-dataset.html#cb144-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">nrow=</span><span class="dv">0</span>,</span>
+<span id="cb144-8"><a href="sampling-objects-in-a-dataset.html#cb144-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">dimnames=</span><span class="fu">list</span>(<span class="cn">NULL</span>,<span class="fu">colnames</span>(starwars))</span>
+<span id="cb144-9"><a href="sampling-objects-in-a-dataset.html#cb144-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb144-10"><a href="sampling-objects-in-a-dataset.html#cb144-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb144-11"><a href="sampling-objects-in-a-dataset.html#cb144-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (s <span class="cf">in</span> species) {</span>
+<span id="cb144-12"><a href="sampling-objects-in-a-dataset.html#cb144-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># First, filter down to the species</span></span>
+<span id="cb144-13"><a href="sampling-objects-in-a-dataset.html#cb144-13" aria-hidden="true" tabindex="-1"></a>  species_sample <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span></span>
+<span id="cb144-14"><a href="sampling-objects-in-a-dataset.html#cb144-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(</span>
+<span id="cb144-15"><a href="sampling-objects-in-a-dataset.html#cb144-15" aria-hidden="true" tabindex="-1"></a>      species<span class="sc">==</span>s</span>
+<span id="cb144-16"><a href="sampling-objects-in-a-dataset.html#cb144-16" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb144-17"><a href="sampling-objects-in-a-dataset.html#cb144-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Calculate sample size, guarantee &gt;= 1</span></span>
+<span id="cb144-18"><a href="sampling-objects-in-a-dataset.html#cb144-18" aria-hidden="true" tabindex="-1"></a>  sample_size <span class="ot">=</span> <span class="fu">max</span>(</span>
+<span id="cb144-19"><a href="sampling-objects-in-a-dataset.html#cb144-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ceiling</span>(<span class="fu">nrow</span>(species_sample)<span class="sc">*</span>sample_proportion),</span>
+<span id="cb144-20"><a href="sampling-objects-in-a-dataset.html#cb144-20" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span></span>
+<span id="cb144-21"><a href="sampling-objects-in-a-dataset.html#cb144-21" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb144-22"><a href="sampling-objects-in-a-dataset.html#cb144-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Sample from characters of the current species</span></span>
+<span id="cb144-23"><a href="sampling-objects-in-a-dataset.html#cb144-23" aria-hidden="true" tabindex="-1"></a>  species_sample <span class="ot">&lt;-</span> species_sample <span class="sc">%&gt;%</span></span>
+<span id="cb144-24"><a href="sampling-objects-in-a-dataset.html#cb144-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice_sample</span>(</span>
+<span id="cb144-25"><a href="sampling-objects-in-a-dataset.html#cb144-25" aria-hidden="true" tabindex="-1"></a>      <span class="at">n=</span>sample_size,</span>
+<span id="cb144-26"><a href="sampling-objects-in-a-dataset.html#cb144-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">replace=</span><span class="cn">FALSE</span></span>
+<span id="cb144-27"><a href="sampling-objects-in-a-dataset.html#cb144-27" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb144-28"><a href="sampling-objects-in-a-dataset.html#cb144-28" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Add sample of this species to larger sample</span></span>
+<span id="cb144-29"><a href="sampling-objects-in-a-dataset.html#cb144-29" aria-hidden="true" tabindex="-1"></a>  stratified_sampled_data <span class="ot">&lt;-</span> <span class="fu">rbind</span>(</span>
+<span id="cb144-30"><a href="sampling-objects-in-a-dataset.html#cb144-30" aria-hidden="true" tabindex="-1"></a>    stratified_sampled_data,</span>
+<span id="cb144-31"><a href="sampling-objects-in-a-dataset.html#cb144-31" aria-hidden="true" tabindex="-1"></a>    species_sample</span>
+<span id="cb144-32"><a href="sampling-objects-in-a-dataset.html#cb144-32" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb144-33"><a href="sampling-objects-in-a-dataset.html#cb144-33" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb144-34"><a href="sampling-objects-in-a-dataset.html#cb144-34" aria-hidden="true" tabindex="-1"></a>stratified_sampled_data</span></code></pre></div>
+<pre><code>## # A tibble: 44 × 14
+##    name        height  mass hair_…¹ skin_…² eye_c…³ birth…⁴ sex   gender homew…⁵
+##    &lt;chr&gt;        &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;     &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;  
+##  1 Ratts Tyer…     79    15 none    grey, … unknown      NA male  mascu… Aleen …
+##  2 Dexter Jet…    198   102 none    brown   yellow       NA male  mascu… Ojom   
+##  3 Ki-Adi-Mun…    198    82 white   pale    yellow       92 male  mascu… Cerea  
+##  4 Mas Amedda     196    NA none    blue    blue         NA male  mascu… Champa…
+##  5 Zam Wesell     168    55 blonde  fair, … yellow       NA fema… femin… Zolan  
+##  6 R2-D2           96    32 &lt;NA&gt;    white,… red          33 none  mascu… Naboo  
+##  7 R5-D4           97    32 &lt;NA&gt;    white,… red          NA none  mascu… Tatooi…
+##  8 Sebulba        112    40 none    grey, … orange       NA male  mascu… Malast…
+##  9 Wicket Sys…     88    20 brown   brown   brown         8 male  mascu… Endor  
+## 10 Poggle the…    183    80 none    green   yellow       NA male  mascu… Geonos…
+## # … with 34 more rows, 4 more variables: species &lt;chr&gt;, films &lt;list&gt;,
+## #   vehicles &lt;list&gt;, starships &lt;list&gt;, and abbreviated variable names
+## #   ¹​hair_color, ²​skin_color, ³​eye_color, ⁴​birth_year, ⁵​homeworld</code></pre>
+<div id="exercises-4" class="section level3 hasAnchor" number="15.3.1">
+<h3><span class="header-section-number">15.3.1</span> Exercises<a href="sampling-objects-in-a-dataset.html#exercises-4" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Uploaded requested files, 5%</li>
-<li>File is properly/clearly formatted, 5%
-<ul>
-<li>Proper section headers for each part of your homework.</li>
-<li>You clearly indicate which question each of your responses are associated with.</li>
-</ul></li>
-<li>Part A., 10%</li>
-<li>Part B., 30%</li>
-<li>Part C., 50%</li>
+<li>Graph the distribution of species in the original <code>starwars</code> dataset and in the stratified sample (just like we did for homeworlds in the naive random sample). What differences do you notice? What might be causing those differences?</li>
+<li>We specified a sample proportion of 0.2. Why might the size of our stratified sample differ from the size of our random sample?</li>
+<li>Read the R code. Identify any lines of code that you don’t understand. Use the documentation to figure out what those lines of code are doing.</li>
 </ul>
-</div>
-<div id="deliverables" class="section level3 hasAnchor" number="2.1.3">
-<h3><span class="header-section-number">2.1.3</span> Deliverables<a href="homework-1.html#deliverables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ul>
-<li><strong>.pdf file</strong> with your responses</li>
-</ul>
-</div>
-<div id="formatting" class="section level3 hasAnchor" number="2.1.4">
-<h3><span class="header-section-number">2.1.4</span> Formatting<a href="homework-1.html#formatting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In the document that you turn in for this homework, include a heading for each Part (Part A, Part B, Part C).
-Ensure that you <strong>clearly</strong> indicate which question each of your responses are associated with.</p>
-</div>
-</div>
-<div id="part-a.-syllabus" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Part A. Syllabus<a href="homework-1.html#part-a.-syllabus" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li>Read the course syllabus (posted on blackboard).
-For this question (on the document that you turn in), confirm that you have read the syllabus.</li>
-<li>Read the academic honesty policy for the GVSU School of Computing: <a href="https://www.gvsu.edu/computing/academic-honesty-30.htm" class="uri">https://www.gvsu.edu/computing/academic-honesty-30.htm</a>.
-For this question (on the document that you turn in), confirm that you have read and agree to abide by the academic honesty policy.</li>
-</ol>
-</div>
-<div id="part-b.-attribute-descriptions" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> Part B. Attribute descriptions<a href="homework-1.html#part-b.-attribute-descriptions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You are given a data file (see assignment attachments on blackboard): <code>hw01data.csv</code>.
-This is a table of ratings for teaching assistants (TA) at some university (this is modified data that originally came from <a href="https://archive.ics.uci.edu/ml/datasets.php" class="uri">https://archive.ics.uci.edu/ml/datasets.php</a>).
-There are 6 attributes:</p>
-<ul>
-<li><code>id</code>: unique number to identify each rating</li>
-<li><code>instructor</code>: id number that identifies the instructor</li>
-<li><code>classNbr</code>: id number that identifies the course</li>
-<li><code>semester</code>: 1=summer, 2=fall, 3=winter</li>
-<li><code>classSize</code>: number of students in the class</li>
-<li><code>rating</code>: 1=low, 2=medium, 3=high</li>
-</ul>
-<p>For each attribute, describe whether it is nominal or ordinal.</p>
-<ol style="list-style-type: decimal">
-<li><code>id</code></li>
-<li><code>instructor</code></li>
-<li><code>classNbr</code></li>
-<li><code>semester</code></li>
-<li><code>classSize</code></li>
-<li><code>rating</code></li>
-</ol>
-</div>
-<div id="part-c.-thinking-about-common-data-mining-applications" class="section level2 hasAnchor" number="2.4">
-<h2><span class="header-section-number">2.4</span> Part C. Thinking about common data mining applications<a href="homework-1.html#part-c.-thinking-about-common-data-mining-applications" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<ol style="list-style-type: decimal">
-<li>This question asks you to think about clustering.
-Considering an average kitchen, identify 4 clusters of objects.
-Name them according to their utility.
-For example, if I were asked to identify 4 clusters in a sporting goods store, I might choose
-apparel (e.g., shoes, shirts), containers (e.g., backpacks, coolers), sports equipment (e.g., basketball, tennis racquets), and fishing (e.g., rods, lures).</li>
-<li>Pick one of the following forms of predictive modeling: regression, classification, or ranking.
-<ul>
-<li>Describe an application domain or a dataset where you think it would be useful to apply the chosen predictive modeling approach.</li>
-<li>What attribute(s) would you be predicting?</li>
-<li>What attributes would you use to make the prediction?</li>
-</ul></li>
-</ol>
 
 </div>
 </div>
-
-
-
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="getting-started-with-r-markdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dealing-with-missing-values.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="curse-of-dimensionality-demo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -510,7 +629,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/amlalejini/gvsu-cis635-2023w/tree/main/homework/homework-01/homework-01.Rmd",
+"link": "https://github.com/amlalejini/gvsu-cis635-2023w/tree/main/lecture-material/week-04/sampling.rmd",
 "text": "Edit"
 },
 "history": {
